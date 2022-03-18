@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>The Top 250 Movies of All Time</title>
+	<link rel="icon" href="clapperboard.png">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$.get('hasilscraping.json', function(obj){
+			// Pisahkan \n yang menjadi batas antar headline (newline)
+			var str = "<table border=1 class='table table-striped table-hover'>";
+
+			str+="<tr><td><b>Rank</b></td><td><b>Poster</b></td><td><b>Title</b></td><td><b>Year</b></td><td><b>Director</b></td><td><b>Genre</b></td><td><b>Scraping Time</b></td></tr>";
+			$.each(obj, function(n, movielist){
+				str+="<tr><td>"+(n+1)+"</td>";
+				str+="<td><img src='"+movielist.Image+"'></td>";
+				str+="<td width='20%'>"+movielist.Title+"</td>";
+				str+="<td>"+movielist.Year+"</td>";
+				str+="<td>"+movielist.Director+"</td>";
+				str+="<td>"+movielist.Genre+"</td>";
+				str+="<td>"+movielist.Time+"</td>";
+				// str+="<td>"+movielist.waktu_scraping+"</td></tr>";
+			});
+			//Display semua headline ke html dengan id=headline_teks
+			str+="</table>";
+			$('#scraping').html(str);
+		});
+	});
+	</script>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		    <a class="navbar-brand" href="https://ameliadewi19.github.io"><img src="back-button.png" style="width: 25px; margin-right: 10px; margin-left: 10px;">Main Page</a>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="row">
+			<center><h1>The Top 250 Movies of All Time</h1></center>
+			<div class="col-md-12">
+				<div id="scraping"></div>
+			</div>
+		</div>
+	</div>
+	<footer class="bg-primary text-center text-lg-start">
+	  <div class="text-center p-3 text-light" style="background-color: rgba(0, 0, 0, 0.2);">
+	    2022 | Made By:
+	    <a class="text-light" href="https://ameliadewi19.github.io">Amelia Dewi Agustiani</a>
+	  </div>
+	  <!-- Copyright -->
+	</footer>
+</body>
+</html>
